@@ -13,14 +13,12 @@ class VCheckQueryStatus {
             try {
                 let id = req.params.id;
                 if(Object.keys(redisClient).length !== 0){
-                    if(id.includes('queue1')){
-                        queryQueue = getQueryQueue('bte_query_queue')
-                    }
-                    if(id.includes('queue2')){
-                        queryQueue = getQueryQueue('bte_query_queue_by_api')
-                    }
-                    if(id.includes('queue3')){
+                    if(id.startsWith('BT')){
                         queryQueue = getQueryQueue('bte_query_queue_by_team')
+                    } else if(id.startsWith('BA')){
+                        queryQueue = getQueryQueue('bte_query_queue_by_api')
+                    }else{
+                        queryQueue = getQueryQueue('bte_query_queue')
                     }
                 }
                 if(queryQueue){

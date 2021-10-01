@@ -11,14 +11,11 @@ exports.asyncquery = async (req, res, next, queueData, queryQueue) => {
 
             // add job to the queue
             let url
-            if(queryQueue.name==='bte_query_queue'){
-                jobId = `queue1_${jobId}`
-            }
             if(queryQueue.name==='bte_query_queue_by_api'){
-                jobId = `queue2_${jobId}`
+                jobId = `BA_${jobId}`
             }
             if(queryQueue.name==='bte_query_queue_by_team'){
-                jobId = `queue3_${jobId}`
+                jobId = `BT_${jobId}`
             }
             url = `${req.protocol}://${req.header('host')}/v1/check_query_status/${jobId}`
 
