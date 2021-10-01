@@ -12,7 +12,7 @@ const {asyncquery, asyncqueryResponse} = require('../../controllers/asyncquery')
 const {getQueryQueue} = require('../../controllers/asyncquery_queue')
 const URL = require("url").URL;
 
-queryQueue = getQueryQueue('get query graph')
+queryQueue = getQueryQueue('bte_query_queue')
 
 async function jobToBeDone(queryGraph, caching, workflow, callback_url){
     utils.validateWorkflow(workflow);
@@ -31,7 +31,7 @@ class V1RouteAsyncQuery {
     setRoutes(app) {
         app.post('/v1/asyncquery', swaggerValidation.validate, async (req, res, next) => {
             // if I don't reinitialize this then the wrong queue will be used, not sure why this happens
-            queryQueue = getQueryQueue('get query graph')
+            queryQueue = getQueryQueue('bte_query_queue')
 
             let queueData = {
                 queryGraph: req.body.message.query_graph,

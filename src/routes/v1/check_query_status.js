@@ -11,16 +11,16 @@ class VCheckQueryStatus {
         app.get('/v1/check_query_status/:id', swaggerValidation.validate, async (req, res, next) => {
             //logger.info("query /query endpoint")
             try {
-                let by = req.query.by;
+                let id = req.params.id;
                 if(Object.keys(redisClient).length !== 0){
-                    if(!by){
-                        queryQueue = getQueryQueue('get query graph')
+                    if(id.includes('queue1')){
+                        queryQueue = getQueryQueue('bte_query_queue')
                     }
-                    if(by==='api'){
-                        queryQueue = getQueryQueue('get query graph by api')
+                    if(id.includes('queue2')){
+                        queryQueue = getQueryQueue('bte_query_queue_by_api')
                     }
-                    if(by==='team'){
-                        queryQueue = getQueryQueue('get query graph by team')
+                    if(id.includes('queue3')){
+                        queryQueue = getQueryQueue('bte_query_queue_by_team')
                     }
                 }
                 if(queryQueue){

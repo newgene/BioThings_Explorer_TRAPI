@@ -12,7 +12,7 @@ const utils = require("../../utils/common");
 const {asyncquery, asyncqueryResponse} = require('../../controllers/asyncquery');
 const {getQueryQueue} = require('../../controllers/asyncquery_queue');
 
-queryQueue = getQueryQueue('get query graph by team')
+queryQueue = getQueryQueue('bte_query_queue_by_team')
 
 async function jobToBeDone(queryGraph, teamName, caching, enableIDResolution, workflow, callback_url){
     utils.validateWorkflow(workflow);
@@ -45,7 +45,7 @@ if(queryQueue){
 class V1RouteAsyncQueryByTeam {
     setRoutes(app) {
         app.post('/v1/team/:team_name/asyncquery', swaggerValidation.validate, async (req, res, next) => {
-            queryQueue = getQueryQueue('get query graph by team')
+            queryQueue = getQueryQueue('bte_query_queue_by_team')
             const queryGraph = req.body.message.query_graph;
             const enableIDResolution = (req.params.team_name === "Text Mining Provider") ? false : true;
             let queueData = {
