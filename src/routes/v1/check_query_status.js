@@ -13,9 +13,9 @@ class VCheckQueryStatus {
             try {
                 let id = req.params.id;
                 if(Object.keys(redisClient).length !== 0){
-                    if(id.startsWith('BT')){
+                    if(id.startsWith('BT_')){
                         queryQueue = getQueryQueue('bte_query_queue_by_team')
-                    } else if(id.startsWith('BA')){
+                    } else if(id.startsWith('BA_')){
                         queryQueue = getQueryQueue('bte_query_queue_by_api')
                     }else{
                         queryQueue = getQueryQueue('bte_query_queue')
